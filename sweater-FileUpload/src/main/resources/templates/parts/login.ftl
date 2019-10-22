@@ -1,58 +1,52 @@
 <#macro login path isRegisterForm>
-    <form action="${path}" method="post">
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label">User Name :</label>
-            <div class="col-sm-6">
+    <form action="${path}" method="post" class="login-form">
+        <#if !isRegisterForm>
+            <h2 align="center">Welcome</h2>
+        <#else>
+            <h2 align="center">Registration</h2>
+        </#if>
+        <div class="txtb">
                 <input type="text" name="username" value="<#if user??>${user.username}</#if>"
                        class="form-control ${(usernameError??)?string('is-invalid', '')}"
-                       placeholder="User name" />
+                       />
+             <span data-placeholder="Username"></span>
                 <#if usernameError??>
                     <div class="invalid-feedback">
                         ${usernameError}
                     </div>
                 </#if>
             </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Password:</label>
-            <div class="col-sm-6">
-                <input type="password" name="password"
-                       class="form-control ${(passwordError??)?string('is-invalid', '')}"
-                       placeholder="Password" />
+        <div class="txtb">
+            <input type="password" name="password" class="form-control ${(passwordError??)?string('is-invalid', '')}" />
+            <span data-placeholder="Password"></span>
                 <#if passwordError??>
                     <div class="invalid-feedback">
                         ${passwordError}
                     </div>
                 </#if>
             </div>
-        </div>
         <#if isRegisterForm>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Password:</label>
-                <div class="col-sm-6">
+                <div class="txtb">
                     <input type="password" name="passwordСonfirmation"
-                           class="form-control ${(passwordСonfirmationError??)?string('is-invalid', '')}"
-                           placeholder="Retype password" />
+                           class="form-control ${(passwordСonfirmationError??)?string('is-invalid', '')}"/>
+                    <span data-placeholder="Retype password"></span>
                     <#if passwordСonfirmationError??>
                         <div class="invalid-feedback">
                             ${passwordСonfirmationError}
                         </div>
                     </#if>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Email:</label>
-                <div class="col-sm-6">
+            <div class="txtb">
                     <input type="email" name="email" value="<#if user??>${user.email}</#if>"
                            class="form-control ${(emailError??)?string('is-invalid', '')}"
-                           placeholder="some@some.com" />
+                            />
+                    <span data-placeholder="Email"></span>
                     <#if emailError??>
                         <div class="invalid-feedback">
                             ${emailError}
                         </div>
                     </#if>
                 </div>
-            </div>
             <div  class="form-group row">
                 <div class="g-recaptcha" data-sitekey="6LduL7cUAAAAAHXpiUHKkrng-KuYspjvQi5V8kTl"></div>
                 <#if captchaError??>
@@ -63,8 +57,12 @@
             </div>
         </#if>
         <input type="hidden" name="_csrf" value="${_csrf.token}" />
-        <#if !isRegisterForm><a href="/registration">Add new user</a></#if>
-        <button class="btn btn-primary" type="submit"><#if isRegisterForm>Create<#else>Sign In</#if></button>
+        <button class="logbtn" type="submit"><#if isRegisterForm>Create<#else>Sign In</#if></button>
+        <#if !isRegisterForm>
+            <div class="bottom-text">
+                Don't have account? <a href="/registration">Sign up</a>
+            </div>
+        </#if>
     </form>
 </#macro>
 
