@@ -1,0 +1,31 @@
+mail:
+    debug: true
+    properties:
+        mail:
+            smtp:
+                auth: true
+    smtp:
+        starttls:
+            enable: true
+recaptcha:
+    secret: 6LduL7cUAAAAAE46ZeC_04ibNMZqGypgkjeeLYBT
+spring:
+    datasource:
+        password: 770
+        url: jdbc:mysql://localhost:3306/sweater?useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false
+        username: root
+    jpa:
+        generate-ddl: false
+        hibernate:
+            ddl-auto: validate
+        show-sql: false
+    mail:
+        host: smtp.gmail.com
+        password: Waweqtt541
+        port: 587
+        protocol: smtp
+        username: oleksandr.kaplin@nure.ua
+    mustache:
+        expose-request-attributes: true
+upload:
+    path: C:/Users/oleks/Documents/GitHub/sweater/sweater-FileUpload/uploads
